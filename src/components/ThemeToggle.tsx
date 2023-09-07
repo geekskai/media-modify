@@ -35,15 +35,6 @@ export default function ThemeToggle() {
         </div>
       ),
     },
-    {
-      key: "system",
-      label: (
-        <div className="flex items-center">
-          <Icons.Laptop className="stroke-1.5 mr-2 h-5 w-5" />
-          <span>{t("system")}</span>
-        </div>
-      ),
-    },
   ];
 
   return (
@@ -51,7 +42,7 @@ export default function ThemeToggle() {
       menu={{
         items,
         selectable: true,
-        selectedKeys: [theme ?? "system"],
+        selectedKeys: [theme ?? "light"],
         onClick,
       }}
     >

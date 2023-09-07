@@ -33,7 +33,7 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider locale={locale}>
             <SiteHeader />
-            <main>{children}</main>
+            <main className="h-screen w-screen">{children}</main>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

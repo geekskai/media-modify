@@ -1,14 +1,19 @@
 {
   "site": {
-    "title": "Next.js",
-    "desc": "将 Ant-Design 5 与 Next.js 13 和 Tailwind CSS 结合使用"
+    "title": "媒体转换",
+    "desc": "在线音视频媒体格式转换"
+  },
+  "tools": {
+    "image": "图片",
+    "audio": "音频",
+    "video": "视频",
+    "file": "文件"
   },
   "nav": {
     "home": "首页"
   },
   "theme": {
     "light": "亮色",
-    "dark": "暗色",
-    "system": "系统"
+    "dark": "暗色"
   }
 }

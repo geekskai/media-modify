@@ -86,7 +86,7 @@ export default function NavTools() {
       {NavItems.map(({ name, items }, index) => (
         <Dropdown key={index} menu={{ items }}>
           <div className="btn">
-            <b className="text-lg">{name}</b>
+            <b className="text-lg	text-lime-900	">{name}</b>
             <Icons.ChevronDown className="mr-2 h-4 w-4" />
           </div>
         </Dropdown>

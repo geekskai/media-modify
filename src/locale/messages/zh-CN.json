@@ -7,7 +7,12 @@
     "image": "图片",
     "audio": "音频",
     "video": "视频",
-    "file": "文件"
+    "file": "文件",
+    "image_tools": "图片工具",
+    "audio_tools": "音频工具",
+    "video_tools": "视频工具",
+    "pdf_tools": "PDF工具",
+    "file_tools": "文件工具"
   },
   "nav": {
     "home": "首页"

@@ -7,7 +7,12 @@
     "image": "Image",
     "audio": "Audio",
     "video": "Video",
-    "file": "File"
+    "file": "File",
+    "image_tools": "Image Tools",
+    "audio_tools": "Audio Tools",
+    "video_tools": "Video Tools",
+    "pdf_tools": "PDF工具",
+    "file_tools": "File Tools"
   },
   "nav": {
     "home": "Home",

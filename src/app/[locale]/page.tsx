@@ -1,20 +1,29 @@
 "use client";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 
 import { Layout, Tag } from "antd";
 import Icons from "@/components/Icons";
 
 const { Header, Sider, Content, Footer } = Layout;
 
-export default function Page() {
+export default function Page({ params }) {
+  console.log(`🚀 ~ file: page.tsx:11 ~ params:`, params);
   const t = useTranslations();
+
+  const locale = useLocale();
+  console.log(`🚀 ~ file: page.tsx:15 ~ locale:`, locale);
 
   return (
     <Layout className="h-full items-center">
       <Layout className="max-w-7xl w-full items-center">
         <Content className="mx-16 my-24 w-full">
           <div className="grid grid-cols-5 gap-4 font-mono text-white text-sm text-center font-bold leading-6 rounded-xl">
-            <div className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-green-300 to-green-500">
+            <Link
+              href="/tools/image"
+              locale={locale}
+              className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-green-300 to-green-500"
+            >
               <div className="flex justify-between items-center">
                 <div className="rounded-full h-12 w-12 bg-green-200 flex justify-center	items-center">
                   <Icons.Image className="h-7 w-7" />
@@ -28,8 +37,11 @@ export default function Page() {
                 </Tag>
               </div>
               {t("tools.image_tools")}
-            </div>
-            <div className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-indigo-300 to-indigo-500">
+            </Link>
+            <Link
+              href="/tools/audio"
+              className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-indigo-300 to-indigo-500"
+            >
               <div className="flex justify-between items-center">
                 <div className="rounded-full h-12 w-12 bg-indigo-200 flex justify-center	items-center">
                   <Icons.Music4 className="h-7 w-7" />
@@ -43,8 +55,11 @@ export default function Page() {
                 </Tag>
               </div>
               {t("tools.audio_tools")}
-            </div>
-            <div className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-blue-300 to-blue-500">
+            </Link>
+            <Link
+              href="/tools/video"
+              className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-blue-300 to-blue-500"
+            >
               <div className="flex justify-between items-center">
                 <div className="rounded-full h-12 w-12 bg-blue-200 flex justify-center	items-center">
                   <Icons.Youtube className="h-7 w-7" />
@@ -58,8 +73,11 @@ export default function Page() {
                 </Tag>
               </div>
               {t("tools.video_tools")}
-            </div>
-            <div className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-fuchsia-300 to-fuchsia-500">
+            </Link>
+            <Link
+              href="/tools/pdf"
+              className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-fuchsia-300 to-fuchsia-500"
+            >
               <div className="flex justify-between items-center">
                 <div className="rounded-full h-12 w-12 bg-fuchsia-200 flex justify-center	items-center">
                   <Icons.Webhook className="h-7 w-7" />
@@ -73,8 +91,11 @@ export default function Page() {
                 </Tag>
               </div>
               {t("tools.pdf_tools")}
-            </div>
-            <div className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-orange-300 to-orange-500">
+            </Link>
+            <Link
+              href="/tools/file"
+              className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-orange-300 to-orange-500"
+            >
               <div className="flex justify-between items-center">
                 <div className="rounded-full h-12 w-12 bg-orange-200 flex justify-center	items-center">
                   <Icons.FileText className="h-7 w-7" />
@@ -88,7 +109,7 @@ export default function Page() {
                 </Tag>
               </div>
               {t("tools.file_tools")}
-            </div>
+            </Link>
           </div>
         </Content>
       </Layout>

@@ -8,7 +8,7 @@ import ThemeToggle from "./ThemeToggle";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
+    <header className="sticky px-8 top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
       <div className="flex max-w-7xl m-auto py-5 h-17 items-center space-x-4 sm:justify-between sm:space-x-0">
         <Logo />
         <NavTools />

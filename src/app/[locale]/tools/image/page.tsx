@@ -91,6 +91,9 @@ export default function Page({ params }) {
     setFileList(newFileList);
   };
 
+  const onModalOk = () => {};
+  const onModalCancel = () => {};
+
   return (
     <Layout className="h-full items-center px-8">
       <Content className="container max-w-7xl">
@@ -98,7 +101,6 @@ export default function Page({ params }) {
           <h1 className="text-4xl my-6 font-bold leading-snug">
             Image Convert Online
           </h1>
-
           <Form
             layout="inline"
             name="wrap"
@@ -124,12 +126,24 @@ export default function Page({ params }) {
                     label: "png",
                   },
                   {
-                    value: "lucy",
-                    label: "Lucy",
+                    value: "jpg",
+                    label: "jpg",
                   },
                   {
-                    value: "tom",
-                    label: "Tom",
+                    value: "jpeg",
+                    label: "jpeg",
+                  },
+                  {
+                    value: "svg",
+                    label: "svg",
+                  },
+                  {
+                    value: "gif",
+                    label: "gif",
+                  },
+                  {
+                    value: "webp",
+                    label: "webp",
                   },
                 ]}
               />
@@ -190,8 +204,18 @@ export default function Page({ params }) {
           </Form>
         </Row>
 
-        <Row className="w-1/5 h-1/5 m-auto justify-center items-center">
-          <ImgCrop rotationSlider>
+        <Row className="w-full h-1/3 m-auto justify-center items-center">
+          <ImgCrop
+            rotationSlider
+            showReset
+            aspectSlider
+            showGrid
+            modalOk="开始转换"
+            modalCancel="取消"
+            modalWidth="40%"
+            onModalCancel={onModalCancel}
+            onModalOk={onModalOk}
+          >
             <Upload
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               listType="picture-card"
@@ -203,27 +227,14 @@ export default function Page({ params }) {
             </Upload>
           </ImgCrop>
 
-          <Button
+          {/* <Button
             className="flex justify-center items-center m-auto"
             type="primary"
             icon={<Icons.RefreshCw className="animate-spin h-5 w-5" />}
             size="large"
           >
             Convert
-          </Button>
-          {/* <Dragger {...props}>
-            <Button
-              className="flex justify-center items-center m-auto"
-              type="primary"
-              icon={<Icons.Upload className="h-4 w-4" />}
-              size="large"
-            >
-              Upload
-            </Button>
-            <Row className="flex justify-center items-center my-6 text-gray-500">
-              Click or drag file to this area to upload
-            </Row>
-          </Dragger> */}
+          </Button> */}
         </Row>
       </Content>
     </Layout>

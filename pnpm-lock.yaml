@@ -8,6 +8,12 @@ dependencies:
   '@ant-design/cssinjs':
     specifier: ^1.17.0
     version: 1.17.0(react-dom@18.2.0)(react@18.2.0)
+  '@ffmpeg/ffmpeg':
+    specifier: ^0.12.6
+    version: 0.12.6
+  '@ffmpeg/util':
+    specifier: ^0.12.1
+    version: 0.12.1
   '@types/node':
     specifier: 20.5.9
     version: 20.5.9
@@ -186,6 +192,23 @@ packages:
   /@eslint/js@8.48.0:
     resolution: {integrity: sha512-ZSjtmelB7IJfWD2Fvb7+Z+ChTIKWq6kjda95fLcQKNS5aheVHn4IkfgRQE3sIIzTcSLwLcLZUD9UBt+V7+h+Pw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: false
+
+  /@ffmpeg/ffmpeg@0.12.6:
+    resolution: {integrity: sha512-4CuXDaqrCga5qBwVtiDDR45y65OGPYZd7VzwGCGz3QLdrQH7xaLYEjU19XL4DTCL0WnTSH8752b8Atyb1SiiLw==}
+    engines: {node: '>=18.x'}
+    dependencies:
+      '@ffmpeg/types': 0.12.1
+    dev: false
+
+  /@ffmpeg/types@0.12.1:
+    resolution: {integrity: sha512-n+v9yvxaBPi1Z/1wy2PvqMHvED3qV7LXBWnBmMBAAzybbs4KWp6wrhCTMxITORMHXpPZEEupsBH1iEoLuzYSUw==}
+    engines: {node: '>=16.x'}
+    dev: false
+
+  /@ffmpeg/util@0.12.1:
+    resolution: {integrity: sha512-10jjfAKWaDyb8+nAkijcsi9wgz/y26LOc1NKJradNMyCIl6usQcBbhkjX5qhALrSBcOy6TOeksunTYa+a03qNQ==}
+    engines: {node: '>=18.x'}
     dev: false
 
   /@formatjs/ecma402-abstract@1.11.4:

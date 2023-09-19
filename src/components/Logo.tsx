@@ -28,7 +28,7 @@ export const Logo: React.FC<ILogoProps> = (props) => {
           // src="/logo.png"
           // src={imageLoader}
           // loader={imageLoader}
-          className="rounded-md"
+          className="rounded-md w-auto h-auto"
           // src="me.png"
           alt="Picture of the author"
           width={30}

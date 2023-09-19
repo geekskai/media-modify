@@ -210,7 +210,7 @@ export default function Page({ params }) {
             showReset
             aspectSlider
             showGrid
-            modalOk="开始转换"
+            modalOk="确认完成"
             modalCancel="取消"
             modalWidth="40%"
             onModalCancel={onModalCancel}

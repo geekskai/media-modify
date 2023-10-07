@@ -4,7 +4,16 @@ import ImgCrop from "antd-img-crop";
 
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 
-import { message, Upload, Form, Layout, Row, Select, Button } from "antd";
+import {
+  message,
+  Upload,
+  Form,
+  Layout,
+  Row,
+  Select,
+  Button,
+  Input,
+} from "antd";
 
 // import { InboxOutlined } from '@ant-design/icons';
 // import type { UploadProps } from "antd";
@@ -18,51 +27,16 @@ const { Header, Sider, Content, Footer } = Layout;
 
 const { Dragger } = Upload;
 
-const props: UploadProps = {
-  name: "file",
-  // multiple: true,
-  accept: "image/*",
-  maxCount: 1,
-  // action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  onChange(info) {
-    const { status } = info.file;
-    if (status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (status === "done") {
-      message.success(`${info.file.name} file uploaded successfully.`);
-    } else if (status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-  onDrop(e) {
-    console.log("Dropped files", e.dataTransfer.files);
-  },
-};
-
-const onChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
-
-const normFile = (e: any) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
-
-const onSearch = (value: string) => {
-  console.log("search:", value);
-};
-
 export default function Page({ params }) {
   console.log(`🚀 ~ file: page.tsx:12 ~ params:`, params);
 
   const { locale, convert } = params;
   const t = useTranslations();
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [formatType, setFormatType] = useState<string>("png");
+  console.log(`🚀 ~ file: page.tsx:37 ~ formatType:`, formatType);
 
   // const locale = useLocale();
-  console.log(`🚀 ~ file: convert page.tsx:13 ~ locale:`, locale);
   const onPreview = async (file: UploadFile) => {
     let src = file.url as string;
     if (!src) {
@@ -78,18 +52,17 @@ export default function Page({ params }) {
     imgWindow?.document.write(image.outerHTML);
   };
 
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    // {
-    //   uid: "-1",
-    //   name: "image.png",
-    //   status: "done",
-    //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    // },
-  ]);
+  const onSelectType = (type) => {
+    setFormatType(type);
+  };
 
-  const onChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
+  const onUploadChange: UploadProps["onChange"] = ({
+    fileList: newFileList,
+  }) => {
     setFileList(newFileList);
   };
+
+  const beforeUpload = () => false;
 
   const onModalOk = () => {};
   const onModalCancel = () => {};
@@ -108,99 +81,79 @@ export default function Page({ params }) {
             labelAlign="left"
             wrapperCol={{ flex: 1 }}
             colon={false}
-            // style={{ maxWidth: "100%" }}
           >
             <Form.Item
               label="Target format:"
               name="format"
+              initialValue="JPG"
               rules={[{ required: true }]}
             >
               <Select
-                placeholder="Select a person"
-                optionFilterProp="children"
-                onChange={onChange}
-                onSearch={onSearch}
-                options={[
-                  {
-                    value: "png",
-                    label: "png",
-                  },
-                  {
-                    value: "jpg",
-                    label: "jpg",
-                  },
-                  {
-                    value: "jpeg",
-                    label: "jpeg",
-                  },
-                  {
-                    value: "svg",
-                    label: "svg",
-                  },
-                  {
-                    value: "gif",
-                    label: "gif",
-                  },
-                  {
-                    value: "webp",
-                    label: "webp",
-                  },
-                ]}
-              />
-            </Form.Item>
-            <Form.Item
-              label="Image quality:"
-              name="quality"
-              // rules={[{ required: true }]}
-            >
-              <Select
                 placeholder="Select a type"
-                // optionFilterProp="children"
-                allowClear
-                onChange={onChange}
+                optionFilterProp="children"
+                // defaultValue="JPG"
+                onChange={onSelectType}
                 // onSearch={onSearch}
                 options={[
                   {
-                    value: "jack",
-                    label: "Jack",
+                    value: "png",
+                    label: "PNG",
                   },
                   {
-                    value: "lucy",
-                    label: "Lucy",
+                    value: "jpg",
+                    label: "JPG",
                   },
                   {
-                    value: "tom",
-                    label: "Tom",
+                    value: "jpeg",
+                    label: "JPEG",
+                  },
+                  {
+                    value: "svg",
+                    label: "SVG",
+                  },
+                  {
+                    value: "gif",
+                    label: "GIF",
+                  },
+                  {
+                    value: "webp",
+                    label: "WEBP",
                   },
                 ]}
               />
             </Form.Item>
-            <Form.Item
-              label="Resize image:"
-              name="resize"
-              // rules={[{ required: true }]}
-            >
+            <Form.Item label="Image quality:" name="quality">
+              <Input placeholder="1...100" />
+            </Form.Item>
+            {/* <Form.Item label="Resize image:" name="resize">
               <Select
-                placeholder="Select a person"
+                placeholder="Input Resize image"
                 optionFilterProp="children"
-                onChange={onChange}
-                onSearch={onSearch}
+                onChange={onResizeImage}
                 options={[
                   {
-                    value: "jack",
-                    label: "Jack",
+                    value: "0",
+                    label: "Keep original image size",
                   },
                   {
-                    value: "lucy",
-                    label: "Lucy",
+                    value: "1",
+                    label: "Change width and height",
                   },
                   {
-                    value: "tom",
-                    label: "Tom",
+                    value: "2",
+                    label: "Change width only",
+                  },
+                  {
+                    value: "3",
+                    label: "Change height only",
+                  },
+                  {
+                    value: "4",
+                    label: "Change height only",
                   },
                 ]}
               />
-            </Form.Item>
+            </Form.Item> */}
           </Form>
         </Row>
 
@@ -217,24 +170,25 @@ export default function Page({ params }) {
             onModalOk={onModalOk}
           >
             <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               listType="picture-card"
               fileList={fileList}
-              onChange={onChange}
+              onChange={onUploadChange}
               onPreview={onPreview}
+              beforeUpload={beforeUpload}
             >
               {fileList.length < 1 && "+ Upload"}
             </Upload>
           </ImgCrop>
 
-          {/* <Button
+          <Button
             className="flex justify-center items-center m-auto"
             type="primary"
             icon={<Icons.RefreshCw className="animate-spin h-5 w-5" />}
             size="large"
           >
-            Convert
-          </Button> */}
+            Convert Now
+          </Button>
         </Row>
       </Content>
     </Layout>

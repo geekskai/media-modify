@@ -116,6 +116,7 @@ export default function Page({ params }) {
                 ({ href, label, icon, color, title, description }) => {
                   return (
                     <Link
+                      key={href}
                       href={href}
                       locale={locale}
                       className="col-span-1 h-34 p-4 bg-gray-200 rounded-xl"

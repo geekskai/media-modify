@@ -8,16 +8,14 @@ import Icons from "@/components/Icons";
 const { Header, Sider, Content, Footer } = Layout;
 
 export default function Page({ params }) {
-  console.log(`🚀 ~ file: page.tsx:11 ~ params:`, params);
   const t = useTranslations();
 
   const locale = useLocale();
-  console.log(`🚀 ~ file: page.tsx:15 ~ locale:`, locale);
 
   return (
     <Layout className="h-full items-center">
       <Layout className="max-w-7xl w-full items-center">
-        <Content className="mx-16 my-24 w-full">
+        <Content className="p-8 w-full">
           <div className="grid grid-cols-5 gap-4 font-mono text-white text-sm text-center font-bold leading-6 rounded-xl">
             <Link
               href="/tools/image"

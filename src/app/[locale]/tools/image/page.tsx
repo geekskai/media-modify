@@ -67,129 +67,107 @@ export default function Page({ params }) {
   const onModalOk = () => {};
   const onModalCancel = () => {};
 
+  const toolsList = [
+    {
+      href: "/tools/image",
+      title: "AI Image Generator",
+      description: "AI Image Generator",
+      color: "green",
+      label: t("tools.image_tools"),
+      icon: <Icons.Image className="h-6 w-6" />,
+    },
+    {
+      href: "/tools/audio",
+      title: "AI Audio Generator",
+      description: "AI Audio Generator",
+      color: "indigo",
+      label: t("tools.audio_tools"),
+      icon: <Icons.Music4 className="h-6 w-6" />,
+    },
+    {
+      title: "AI Video Generator",
+      description: "AI Video Generator",
+      href: "/tools/video",
+      color: "blue",
+      label: t("tools.video_tools"),
+      icon: <Icons.Youtube className="h-6 w-6" />,
+    },
+    {
+      title: "AI PDF Generator",
+      description: "AI PDF Generator",
+      color: "fuchsia",
+      href: "/tools/pdf",
+      label: t("tools.pdf_tools"),
+      icon: <Icons.Webhook className="h-6 w-6" />,
+    },
+  ];
+
   return (
     <Layout className="h-full items-center px-8">
       <Content className="container max-w-7xl">
         <Row className="flex-col justify-center items-center gap-y-2">
-          <h1 className="text-4xl my-6 font-bold leading-snug">
-            Image Convert Online
-          </h1>
-          <Form
-            layout="inline"
-            name="wrap"
-            labelCol={{ flex: "110px" }}
-            labelAlign="left"
-            wrapperCol={{ flex: 1 }}
-            colon={false}
-          >
-            <Form.Item
-              label="Target format:"
-              name="format"
-              initialValue="JPG"
-              rules={[{ required: true }]}
-            >
-              <Select
-                placeholder="Select a type"
-                optionFilterProp="children"
-                // defaultValue="JPG"
-                onChange={onSelectType}
-                // onSearch={onSearch}
-                options={[
-                  {
-                    value: "png",
-                    label: "PNG",
-                  },
-                  {
-                    value: "jpg",
-                    label: "JPG",
-                  },
-                  {
-                    value: "jpeg",
-                    label: "JPEG",
-                  },
-                  {
-                    value: "svg",
-                    label: "SVG",
-                  },
-                  {
-                    value: "gif",
-                    label: "GIF",
-                  },
-                  {
-                    value: "webp",
-                    label: "WEBP",
-                  },
-                ]}
-              />
-            </Form.Item>
-            <Form.Item label="Image quality:" name="quality">
-              <Input placeholder="1...100" />
-            </Form.Item>
-            {/* <Form.Item label="Resize image:" name="resize">
-              <Select
-                placeholder="Input Resize image"
-                optionFilterProp="children"
-                onChange={onResizeImage}
-                options={[
-                  {
-                    value: "0",
-                    label: "Keep original image size",
-                  },
-                  {
-                    value: "1",
-                    label: "Change width and height",
-                  },
-                  {
-                    value: "2",
-                    label: "Change width only",
-                  },
-                  {
-                    value: "3",
-                    label: "Change height only",
-                  },
-                  {
-                    value: "4",
-                    label: "Change height only",
-                  },
-                ]}
-              />
-            </Form.Item> */}
-          </Form>
+          <h1 className="text-4xl my-6 font-bold leading-snug">Image Tools</h1>
+          <p className="text-1xl ">Free Online Image Tools</p>
         </Row>
+        <Layout className="max-w-7xl w-full items-center">
+          <Content className="p-8 w-full">
+            <div className="grid grid-cols-4 gap-4 font-mono text-white text-sm text-center font-bold leading-6 rounded-xl">
+              {toolsList.map(
+                ({ href, label, icon, color, title, description }) => {
+                  return (
+                    <Link
+                      href={href}
+                      locale={locale}
+                      className="col-span-1 h-34 p-4 bg-gray-200 rounded-xl"
+                    >
+                      <div className="flex gap-3 justify-start	items-start">
+                        <div
+                          className={`mb-2 rounded-lg h-10 w-10 bg-${color}-200 flex justify-center	items-center`}
+                        >
+                          {icon}
+                        </div>
+                        <div className="flex flex-col justify-start	items-start">
+                          <h4 className="text-black">{title}</h4>
+                          <span className="text-violet-300 text-xs">
+                            {label}
+                          </span>
+                        </div>
+                      </div>
 
-        <Row className="w-full h-1/3 m-auto justify-center items-center">
-          <ImgCrop
-            rotationSlider
-            showReset
-            aspectSlider
-            showGrid
-            modalOk="确认完成"
-            modalCancel="取消"
-            modalWidth="40%"
-            onModalCancel={onModalCancel}
-            onModalOk={onModalOk}
-          >
-            <Upload
-              // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              listType="picture-card"
-              fileList={fileList}
-              onChange={onUploadChange}
-              onPreview={onPreview}
-              beforeUpload={beforeUpload}
-            >
-              {fileList.length < 1 && "+ Upload"}
-            </Upload>
-          </ImgCrop>
+                      <p className="text-[#707375] text-left">{description}</p>
+                    </Link>
+                  );
+                }
+              )}
 
-          <Button
-            className="flex justify-center items-center m-auto"
-            type="primary"
-            icon={<Icons.RefreshCw className="animate-spin h-5 w-5" />}
-            size="large"
-          >
-            Convert Now
-          </Button>
-        </Row>
+              {/* <Link href="/tools/audio" className="col-span-1 h-44 p-4">
+                <div className="flex gap-3 justify-start	items-start">
+                  <div className="rounded-lg h-10 w-10 bg-indigo-200 flex justify-center	items-center">
+                    <Icons.Music4 className="h-6 w-6" />
+                  </div>
+                </div>
+                {t("tools.audio_tools")}
+              </Link>
+
+              <Link href="/tools/video" className="col-span-1 h-44 p-4">
+                <div className="flex justify-between items-center">
+                  <div className="rounded-lg h-10 w-10 bg-blue-200 flex justify-center	items-center">
+                    <Icons.Youtube className="h-6 w-6" />
+                  </div>
+                </div>
+                {t("tools.video_tools")}
+              </Link>
+              <Link href="/tools/pdf" className="col-span-1 h-44 p-4">
+                <div className="flex justify-between items-center">
+                  <div className="rounded-lg h-10 w-10 bg-fuchsia-200 flex justify-center	items-center">
+                    <Icons.Webhook className="h-6 w-6" />
+                  </div>
+                </div>
+                {t("tools.pdf_tools")}
+              </Link> */}
+            </div>
+          </Content>
+        </Layout>
       </Content>
     </Layout>
   );

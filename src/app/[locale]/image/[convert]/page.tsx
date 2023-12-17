@@ -20,5 +20,6 @@ export async function generateMetadata({
 }
 
 export default function Page(props) {
+  console.log(`🚀 ~ file: page.tsx:convert  ~ props:`, props);
   return <Layout {...props} />;
 }

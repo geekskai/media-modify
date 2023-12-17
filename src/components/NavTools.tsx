@@ -1,9 +1,11 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 
 import { Dropdown, Layout } from "antd";
-import { useTranslations } from "next-intl";
+
+import { useTranslations, useLocale } from "next-intl";
 import type { MenuProps, MenuTheme } from "antd";
 
 import Icons from "./Icons";
@@ -12,48 +14,66 @@ const { Header, Footer, Sider, Content } = Layout;
 
 export interface NavItem {
   name: React.ReactNode;
-  href?: string;
   items?: MenuProps["items"];
 }
 
 export default function NavTools() {
   const t = useTranslations();
 
+  const locale = useLocale();
+  console.log(`🚀 ~ file: NavTools.tsx:24 ~ locale:`, locale);
+
   const ToolImages: MenuProps["items"] = [
     {
       key: "image",
       label: (
-        <div className="flex items-center">
+        <Link
+          href={`/${locale}/tools/image`}
+          locale={locale}
+          className="flex-center"
+        >
           <Icons.FileImage className="mr-2 h-4 w-4 text-orange-500" />
           <span>{t("tools.image")}</span>
-        </div>
+        </Link>
       ),
     },
     {
       key: "audio",
       label: (
-        <div className="flex items-center">
+        <Link
+          href={`/${locale}/tools/audio`}
+          locale={locale}
+          className="flex-center"
+        >
           <Icons.FileAudio className="mr-2 h-4 w-4 text-blue-500" />
           <span>{t("tools.audio")}</span>
-        </div>
+        </Link>
       ),
     },
     {
       key: "video",
       label: (
-        <div className="flex items-center">
-          <Icons.FileVideo className="mr-2 h-4 w-4 text-blue-500" />
+        <Link
+          href={`/${locale}/tools/video`}
+          locale={locale}
+          className="flex-center"
+        >
+          <Icons.FileVideo className="mr-2 h-4 w-4 text-rose-500" />
           <span>{t("tools.video")}</span>
-        </div>
+        </Link>
       ),
     },
     {
       key: "file",
       label: (
-        <div className="flex items-center">
-          <Icons.File className="mr-2 h-4 w-4 text-blue-500" />
+        <Link
+          href={`/${locale}/tools/file`}
+          locale={locale}
+          className="flex items-center"
+        >
+          <Icons.FileText className="mr-2 h-4 w-4 text-green-500" />
           <span>{t("tools.file")}</span>
-        </div>
+        </Link>
       ),
     },
   ];
@@ -61,22 +81,18 @@ export default function NavTools() {
   const NavItems: NavItem[] = [
     {
       name: t("tools.image"),
-      href: "/",
       items: ToolImages,
     },
     {
       name: t("tools.audio"),
-      href: "/",
       items: ToolImages,
     },
     {
       name: t("tools.video"),
-      href: "/",
       items: ToolImages,
     },
     {
       name: t("tools.file"),
-      href: "/",
       items: ToolImages,
     },
   ];

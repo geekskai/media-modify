@@ -1,6 +1,8 @@
 "use client";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
+import { twMerge } from 'tailwind-merge'
+
 
 import { Layout, Tag } from "antd";
 import Icons from "@/components/Icons";
@@ -12,6 +14,22 @@ export default function Page({ params }) {
 
   const locale = useLocale();
 
+  const toolsList = [
+    {
+      href: "/tools/image",
+      color: "green",
+      icon: <Icons.Image className="h-7 w-7" />,
+      title: "Image Tools",
+      description: "Solve Your Image Problems",
+    },
+    {
+      href: "/tools/audio",
+      icon: <Icons.Image className="h-7 w-7" />,
+      title: "Image Tools",
+      description: "Solve Your Image Problems",
+    },
+  ];
+
   return (
     <Layout className="h-full items-center">
       <Layout className="max-w-7xl w-full items-center">
@@ -22,7 +40,7 @@ export default function Page({ params }) {
               locale={locale}
               className="w-56 h-44 p-4 rounded-xl shadow-lg bg-gradient-to-br from-green-300 to-green-500"
             >
-              <div className="flex justify-between items-center">
+              <article className="flex justify-between items-center">
                 <div className="rounded-full h-12 w-12 bg-green-200 flex justify-center	items-center">
                   <Icons.Image className="h-7 w-7" />
                 </div>
@@ -33,8 +51,8 @@ export default function Page({ params }) {
                 >
                   56+ tools
                 </Tag>
-              </div>
-              {t("tools.image_tools")}
+              </article>
+              <span className="flex-start">{t("tools.image_tools")}</span>
             </Link>
             <Link
               href="/tools/audio"
@@ -52,7 +70,7 @@ export default function Page({ params }) {
                   56+ tools
                 </Tag>
               </div>
-              {t("tools.audio_tools")}
+              <span className="flex-start">{t("tools.audio_tools")}</span>
             </Link>
             <Link
               href="/tools/video"
@@ -70,7 +88,7 @@ export default function Page({ params }) {
                   56+ tools
                 </Tag>
               </div>
-              {t("tools.video_tools")}
+              <span className="flex-start">{t("tools.video_tools")}</span>
             </Link>
             <Link
               href="/tools/pdf"
@@ -88,7 +106,7 @@ export default function Page({ params }) {
                   56+ tools
                 </Tag>
               </div>
-              {t("tools.pdf_tools")}
+              <span className="flex-start">{t("tools.pdf_tools")}</span>
             </Link>
             <Link
               href="/tools/file"
@@ -106,7 +124,8 @@ export default function Page({ params }) {
                   56+ tools
                 </Tag>
               </div>
-              {t("tools.file_tools")}
+
+              <span className="flex-start">{t("tools.file_tools")}</span>
             </Link>
           </div>
         </Content>

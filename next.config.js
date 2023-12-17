@@ -8,10 +8,6 @@ const nextConfig = {
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
   transpilePackages: ["antd"],
   swcMinify: true,
-  experimental: {
-    // Required:
-    appDir: true,
-  },
   async headers() {
     return [
       {

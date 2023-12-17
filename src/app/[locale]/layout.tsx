@@ -5,11 +5,11 @@ import { NextIntlClientProvider } from "next-intl";
 // import { getLocale, getTranslations } from "next-intl/server";
 
 import { SiteHeader } from "@/components/SiteHeader";
-import ThemeProvider from "@/components/ThemeProvider";
+import ThemeProvider from "@/components/provider/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "media convert",
-  description: "media convert",
+  description: "media converter",
 };
 
 export default async function RootLayout({

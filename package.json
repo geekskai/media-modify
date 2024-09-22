@@ -18,6 +18,7 @@
     "antd": "^5.8.6",
     "antd-img-crop": "^4.12.2",
     "autoprefixer": "10.4.15",
+    "axios": "^1.7.7",
     "dayjs": "^1.11.9",
     "eslint": "8.48.0",
     "eslint-config-next": "14.0.4",
@@ -29,7 +30,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
     "clsx": "^2.0.0",

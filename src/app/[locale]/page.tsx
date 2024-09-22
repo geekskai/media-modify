@@ -30,6 +30,22 @@ export default function Page({ params }) {
     },
   ];
 
+  const [videoLink, setVideoLink] = useState(
+    "https://youtu.be/CsxNTc4vNEg?si=PHuF5O2kZo5_YcoH"
+  );
+
+  const [finalLink, setFinalLink] = useState("");
+
+  const [showDownload, setShowDownload] = useState(false);
+
+  const handleDownload = async () => {
+    const res = await axios.get(`/api/downloader?url=${videoLink}`);
+    // const data = await res.json();
+    console.log(`🚀 ~ data:`, res.data);
+    setFinalLink(res.data.format.url);
+    setShowDownload(true);
+  };
+
   return (
     <Layout className="h-full items-center">
       <Layout className="max-w-7xl w-full items-center">
@@ -127,6 +143,26 @@ export default function Page({ params }) {
 
               <span className="flex-start">{t("tools.file_tools")}</span>
             </Link>
+          </div>
+
+           <div className="flex  py-5 bg-indigo-600 rounded-md flex-col items-center gap-3">
+            <h3>youtube downloader</h3>
+            <div className=" mt-4  space-x-2 w-full flex gap-2 justify-center">
+              <input
+                type="text"
+                className="w-1/2 p-2 rounded-md outline-none"
+                placeholder="Enter youtube video url"
+                value={videoLink}
+                onChange={(e) => setVideoLink(e.target.value)}
+              />
+              <button
+                onClick={handleDownload}
+                className=" border rounded py-1 px-5"
+              >
+                {" "}
+                Convert
+              </button>
+            </div>
           </div>
         </Content>
       </Layout>
